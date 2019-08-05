@@ -13,13 +13,14 @@ import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnumEnchantmentType;
 import net.minecraftforge.common.MinecraftForge;
 
-@Mod(modid = Main.MODID, version = Main.VERSION)
+@Mod(modid = Main.MODID, version = Main.VERSION, name = Main.NAME)
 public class Main {
 	public static final String NAME = "Soulbound Enchantment";
 	public static final String MODID = "soulboundench";
 	public static final String VERSION = "1.0";
 
 	public static EnchantmentSoulbound soulbound;
+
 	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
 		ModMetadata modMeta = event.getModMetadata();
@@ -32,6 +33,7 @@ public class Main {
 		modMeta.name = NAME;
 		modMeta.description = "A mod that adds a Soulbound enchantment, which keeps your items with you on death";
 	}
+
 	@EventHandler
 	public void init(FMLInitializationEvent event) {
 		soulbound = new EnchantmentSoulbound(getEmptyEnchantId(), 1, EnumEnchantmentType.all);
@@ -41,7 +43,7 @@ public class Main {
 	public void postInit(FMLPostInitializationEvent event) {
 		MinecraftForge.EVENT_BUS.register(new Events());
 	}
-	
+
 	private int getEmptyEnchantId() {
 		for (int i = 0; i < Enchantment.enchantmentsList.length; i++)
 			if (Enchantment.enchantmentsList[i] == null)
